@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { categories, posts } from '../../data/posts';
+
+export function getStaticPaths() {
+  return categories.map((category) => ({ params: { slug: category.slug }, props: { category } }));
+}
+
+const { category } = Astro.props;
+const categoryPosts = posts.filter((post) => post.categorySlug === category.slug);
+---
+<BaseLayout title={`${category.name} | Louis the History Goose`}>
+  <section class="article-hero container">
+    <p class="eyebrow">The Louis archive</p>
+    <h1>{category.name}</h1>
+    <p style="max-width: 620px; margin: 28px 0 0; font-size: 19px;">Stories from the stranger corners of the historical record.</p>
+  </section>
+  <section class="story-section container">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">{categoryPosts.length} stories</p>
+        <h2 class="section-title">
+          Browse the<br />
+          <em>archive</em>
+        </h2>
+      </div>
+      <a class="small-link" href="/#stories">All stories</a>
+    </div>
+    <div class="story-grid">
+      {categoryPosts.map((post) => (
+        <article class="story-card">
+          <a href={`/posts/${post.slug}`}>
+            <div class={`card-image ${post.style}`}>
+              <span>{post.mark}</span>
+            </div>
+          </a>
+          <span class="card-meta">{post.category} · {post.date}</span>
+          <h3><a href={`/posts/${post.slug}`}>{post.title}</a></h3>
+          <p>{post.excerpt}</p>
+          <a class="read-link" href={`/posts/${post.slug}`}>Read the story</a>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

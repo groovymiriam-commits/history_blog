@@ -1,0 +1,150 @@
+---
+import '../styles/global.scss';
+
+const links = [
+  {
+    title: 'Louis History Goose Shop',
+    meta: 'T-shirts, mugs & history nonsense',
+    href: 'https://louishistorygoose-shop.fourthwall.com/',
+    featured: true,
+  },
+  {
+    title: 'The Book',
+    meta: 'Louis is going to be a published goose',
+    href: 'https://link.amazon/B0fMb9Bxb',
+  },
+
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <meta
+      name="description"
+      content="Louis the History Goose. History facts they probably skipped in school."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Fraunces:opsz,wght@9..144,700;9..144,800;9..144,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://use.typekit.net/nut0xcv.css"
+    />
+    <link rel="icon" href="/icons/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/icons/favicon.png" />
+
+    <title>Louis the History Goose</title>
+  </head>
+
+  <body>
+    <main class="bio-page">
+      <div class="bio-wrap">
+
+        <!-- PROFILE -->
+        <section class="bio-profile">
+
+          <img
+            class="bio-avatar"
+            src="/logo_louis.svg"
+            alt="Louis the History Goose"
+          />
+
+            <p class="bio-intro">
+            History facts they probably skipped in school.
+            History without the fairy tales.
+          </p>
+
+
+          <!-- SOCIALS -->
+          <div class="bio-socials">
+
+     <div class="socials" aria-label="Social links">
+
+    <a
+      href="https://www.instagram.com/louis.history_goose/"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Instagram"
+    >
+      <img src="/icons/ig.svg" alt="" />
+    </a>
+
+    <a
+      href="https://www.tiktok.com/@history.goose"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="TikTok"
+    >
+      <img src="/icons/tiktok.svg" alt="" />
+    </a>
+
+    <a
+      href="https://www.youtube.com/@Louishistorygoose"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="YouTube"
+    >
+      <img src="/icons/youtube.svg" alt="" />
+    </a>
+
+  </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- LINKS -->
+        <section
+          class="bio-links"
+          aria-label="Louis the History Goose links"
+        >
+
+          {links.map((link) => (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class:list={[
+                'bio-link',
+                { 'bio-link-featured': link.featured }
+              ]}
+            >
+              {link.featured && (
+                <span class="bio-link-label">
+                  Visit the shop
+                </span>
+              )}
+
+              <strong>
+                {link.title}
+              </strong>
+
+              <span class="bio-link-meta">
+                {link.meta}
+              </span>
+            </a>
+          ))}
+
+          <p class="bio-status">
+            Blog coming soon
+          </p>
+        </section>
+
+      </div>
+    </main>
+  </body>
+</html>

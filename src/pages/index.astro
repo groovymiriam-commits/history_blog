@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { categories, posts } from '../data/posts';
+
+const featured = posts[0];
+const stories = posts.slice(1);
+---
+<BaseLayout>
+	<section class="hero">
+		<div class="container hero-inner">
+			<div class="hero-copy">
+			
+				<h1 class="display-title">
+			Where <span class="highlight">HISTORY</span><br />
+			Gets Weird
+				</h1>
+				<p>Strange stories, forgotten facts, they probably skipped in school.</p>
+				<a class="button" href="#stories">
+					Start wandering
+				</a>
+			</div>
+			<div class="hero-art">
+				<div class="sun"></div>
+				<img class="hero-history-image" src="/history.png" alt="Illustrated historical scenes from different eras" />
+
+		
+			</div>
+		</div>
+	</section>
+	<section class="story-section container" id="stories">
+		<div class="section-heading">
+			<div>
+				<p class="eyebrow">From Louis's desk</p>
+				<h2 class="section-title">
+					Recent<br />
+					<em>rabbit holes</em>
+				</h2>
+			</div>
+			<a class="small-link" href={`/posts/${featured.slug}`}>See the feature</a>
+		</div>
+		<nav class="category-list" aria-label="Browse categories">
+			{categories.map((category) => (
+				<a href={`/category/${category.slug}`}>{category.name}</a>
+			))}
+		</nav>
+		<article class="featured">
+			<div class="featured-visual" aria-label={`Poster graphic for ${featured.title}`}></div>
+			<div class="featured-copy">
+				<p class="eyebrow">Featured story · {featured.year}</p>
+				<h3>{featured.title}</h3>
+				<p>{featured.excerpt}</p>
+				<a class="button" href={`/posts/${featured.slug}`}>
+					Read the story
+				</a>
+			</div>
+		</article>
+		<div class="story-grid">
+			{stories.map((story) => (
+				<article class="story-card">
+					<a href={`/posts/${story.slug}`}>
+						<div class={`card-image ${story.style}`}>
+							<span>{story.mark}</span>
+						</div>
+					</a>
+					<span class="card-meta">
+						<a href={`/category/${story.categorySlug}`}>{story.category}</a> · {story.date}
+					</span>
+					<h3><a href={`/posts/${story.slug}`}>{story.title}</a></h3>
+					<p>{story.excerpt}</p>
+					<a class="read-link" href={`/posts/${story.slug}`}>Read the story</a>
+				</article>
+			))}
+		</div>
+	</section>
+</BaseLayout>

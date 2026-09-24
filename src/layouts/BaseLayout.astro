@@ -1,0 +1,34 @@
+---
+import '../styles/global.scss';
+import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  robots?: string;
+}
+
+const { title = 'Louis the History Goose', description = 'Strange stories, forgotten facts, and the bits they somehow skipped in school.', robots } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    {robots && <meta name="robots" content={robots} />}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Fraunces:opsz,wght@9..144,700;9..144,800;9..144,900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.typekit.net/nut0xcv.css" />
+    <link rel="icon" href="/icons/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/icons/favicon.png" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <SiteNav />
+    <main class="page-content"><slot /></main>
+    <SiteFooter />
+  </body>
+</html>

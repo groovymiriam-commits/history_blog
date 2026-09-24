@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { posts } from '../../data/posts';
+
+export function getStaticPaths() {
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const related = posts.filter((candidate) => candidate.slug !== post.slug).slice(0, 3);
+---
+<BaseLayout title={`${post.title} | Louis the History Goose`}>
+  <section class="article-hero container">
+    <p class="eyebrow"><a href={`/category/${post.categorySlug}`}>{post.category}</a> · {post.date}</p>
+    <h1>{post.title}</h1>
+    <p style="max-width: 620px; margin: 28px 0 0; font-size: 19px;">{post.excerpt}</p>
+  </section>
+  <section class="article-layout container">
+    <div>
+      <div class={`article-feature ${post.style}`} role="img" aria-label={`Typographic poster for ${post.title}`}><span>{post.mark}</span></div>
+      <div class="article-body">
+        <p>{post.intro}</p>
+        {post.sections.map((section) => (
+          <section>
+            <h2>{section.heading}</h2>
+            {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+          </section>
+        ))}
+      </div>
+    </div>
+    <aside class="article-aside">
+      <img class="goose-image" src="/goose.svg" alt="Louis the History Goose" />
+      <p>Louis's field note: history gets stranger the closer you look.</p>
+    </aside>
+  </section>
+  <section class="related">
+    <div class="container">
+      <div class="section-heading">
+        <h2 class="section-title">
+          More odd<br />
+          <em>business</em>
+        </h2>
+        <a class="small-link" href="/#stories">Back to the archive</a>
+      </div>
+      <div class="story-grid">
+        {related.map((relatedPost) => (
+          <article class="story-card">
+            <a href={`/posts/${relatedPost.slug}`}>
+              <div class={`card-image ${relatedPost.style}`}>
+                <span>{relatedPost.mark}</span>
+              </div>
+            </a>
+            <span class="card-meta">{relatedPost.category} · {relatedPost.date}</span>
+            <h3><a href={`/posts/${relatedPost.slug}`}>{relatedPost.title}</a></h3>
+            <p>{relatedPost.excerpt}</p>
+            <a class="read-link" href={`/posts/${relatedPost.slug}`}>Read the story</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
