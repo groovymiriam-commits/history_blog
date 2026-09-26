@@ -3,40 +3,64 @@
     <img class="logo-goose" src="/logo_louis.svg" alt="" />
   </a>
 
-  <nav class="site-nav" aria-label="Main navigation">
-    <a href="/">Home</a>
-    <a href="/#stories">History</a>
-    <a href="/about">About</a>
-  </nav>
+  <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="header-menu">
+    <span class="sr-only">Toggle navigation</span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 
-  <div class="socials" aria-label="Social links">
+  <div class="header-menu" id="header-menu">
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/#stories">History</a>
+      <a href="/about">About</a>
+      <a href="https://louishistorygoose-shop.fourthwall.com/" target="_blank" rel="noopener noreferrer">Shop</a>
+    </nav>
 
-    <a
-      href="https://www.instagram.com/louis.history_goose/"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Instagram"
-    >
-      <img src="/icons/ig.svg" alt="" />
-    </a>
-
-    <a
-      href="https://www.tiktok.com/@history.goose"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="TikTok"
-    >
-      <img src="/icons/tiktok.svg" alt="" />
-    </a>
-
-    <a
-      href="https://www.youtube.com/@Louishistorygoose"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="YouTube"
-    >
-      <img src="/icons/youtube.svg" alt="" />
-    </a>
-
+    <div class="socials" aria-label="Social links">
+      <a href="https://www.instagram.com/louis.history_goose/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <img src="/icons/ig.svg" alt="" />
+      </a>
+      <a href="https://www.tiktok.com/@history.goose" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+        <img src="/icons/tiktok.svg" alt="" />
+      </a>
+      <a href="https://www.youtube.com/@Louishistorygoose" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <img src="/icons/youtube.svg" alt="" />
+      </a>
+    </div>
   </div>
+
+  <button class="menu-scrim" type="button" aria-label="Close navigation" tabindex="-1"></button>
 </header>
+
+<script>
+  const header = document.querySelector('.site-header');
+  const menuToggle = header?.querySelector('.menu-toggle');
+  const menuScrim = header?.querySelector('.menu-scrim');
+
+  const setMenuOpen = (isOpen: boolean) => {
+    header?.classList.toggle('menu-open', isOpen);
+    document.body.classList.toggle('menu-is-open', isOpen);
+    menuToggle?.setAttribute('aria-expanded', String(isOpen));
+    menuToggle?.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+  };
+
+  menuToggle?.addEventListener('click', () => {
+    setMenuOpen(!header?.classList.contains('menu-open'));
+  });
+
+  menuScrim?.addEventListener('click', () => setMenuOpen(false));
+  header?.querySelectorAll('.site-nav a').forEach((link) => {
+    link.addEventListener('click', () => setMenuOpen(false));
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape' || !header?.classList.contains('menu-open')) return;
+    setMenuOpen(false);
+  });
+
+  window.matchMedia('(min-width: 761px)').addEventListener('change', (event) => {
+    if (event.matches) setMenuOpen(false);
+  });
+</script>

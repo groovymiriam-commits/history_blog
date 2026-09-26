@@ -1,0 +1,14 @@
+@use 'variables' as *;
+
+.site-footer { padding: 55px 0 32px; background: $color-text; color: $color-light; }
+.footer-inner { display: flex; justify-content: space-between; gap: 30px; align-items: end; }
+.site-footer .logo { color: $color-light; }
+.site-footer .logo-goose { width: 120px; height: 70px; }
+.footer-note { max-width: 260px; margin: 10px 0 0; color: color-mix(in srgb, $color-light 70%, transparent); font-size: 13px; }
+.footer-links { display: flex; gap: 16px; margin-top: 18px; font-size: 12px; }
+.footer-links a { color: $color-light; text-decoration: underline; text-underline-offset: 3px; }
+.footer-bottom { padding-top: 44px; color: color-mix(in srgb, $color-light 52%, transparent); font-size: 11px; text-transform: uppercase; letter-spacing: .1em; }
+
+@media (max-width: $mobile-breakpoint) {
+  .footer-inner { align-items: start; flex-direction: column; }
+}

@@ -1,0 +1,72 @@
+@use 'variables' as *;
+
+.bio-page {
+  min-height: 760px;
+  padding: 72px 24px 96px;
+  background: radial-gradient($color-accent 1px, transparent 1px), $color-background;
+  background-size: 18px 18px;
+}
+
+.bio-wrap { width: min(100%, 560px); margin: 0 auto; text-align: center; }
+.bio-profile { display: flex; align-items: center; flex-direction: column; }
+.bio-avatar { width: 300px; height: 150px; padding: 10px; margin-bottom: 22px; object-fit: contain; }
+.bio-profile .eyebrow { margin-bottom: 12px; }
+.bio-profile h1 { margin: 0; color: $color-primary; font-family: $font-title; font-size: clamp(48px, 10vw, 76px); font-weight: 700; line-height: .9; }
+.bio-intro { max-width: 390px; margin: 0 auto 30px; font-size: 16px; }
+
+.bio-status {
+  display: inline-block;
+  margin: 0 0 18px;
+  padding: 8px 14px;
+  border: 1.5px solid $color-primary;
+  background: $color-highlight;
+  color: $color-primary;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.bio-socials { display: flex; justify-content: center; gap: 12px; margin-bottom: 24px; }
+.bio-socials a {
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  border: 3px solid $color-primary;
+  border-radius: 18px;
+  background: $color-highlight;
+  transition: transform .2s ease, box-shadow .2s ease;
+
+  &:hover { transform: translateY(-3px); box-shadow: 4px 5px 0 $color-primary; }
+}
+
+.bio-socials img { width: 22px; height: 22px; object-fit: contain; }
+.bio-links { display: grid; gap: 12px; }
+.bio-link {
+  display: grid;
+  gap: 4px;
+  padding: 18px 22px;
+  border: 2px solid $color-primary;
+  border-radius: 20px;
+  background: $color-light;
+  text-align: left;
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+
+  &:hover { background: $color-highlight; transform: translateY(-3px); box-shadow: 4px 5px 0 $color-primary; }
+}
+
+.bio-link strong { color: $color-primary; font-family: $font-display; font-size: 21px; line-height: 1.1; }
+.bio-link-meta { color: $color-secondary; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.bio-link-featured { padding: 22px; background: $color-primary; border-radius: 22px; }
+.bio-link-featured:hover { background: color-mix(in srgb, $color-primary 80%, white); }
+.bio-link-featured strong { color: $color-light; font-size: 25px; }
+.bio-link-featured .bio-link-label { color: $color-highlight; font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.bio-link-featured .bio-link-meta { color: $color-highlight; }
+.bio-brand { display: inline-flex; align-items: center; gap: 8px; margin-top: 48px; color: $color-primary; font-family: $font-display; font-size: 14px; font-weight: 800; }
+.bio-brand img { width: 28px; height: 28px; object-fit: contain; }
+
+@media (max-width: $mobile-breakpoint) {
+  .bio-page { min-height: 100vh; padding: 44px 20px 64px; }
+  .bio-avatar { max-width: 100%; }
+}
