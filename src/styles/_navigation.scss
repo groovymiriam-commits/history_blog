@@ -34,6 +34,7 @@
 }
 
 .menu-toggle { display: none; }
+body.menu-is-open { overflow: hidden; }
 
 @media (max-width: $mobile-breakpoint) {
   .site-header {

@@ -66,7 +66,21 @@
 .bio-brand { display: inline-flex; align-items: center; gap: 8px; margin-top: 48px; color: $color-primary; font-family: $font-display; font-size: 14px; font-weight: 800; }
 .bio-brand img { width: 28px; height: 28px; object-fit: contain; }
 
+.bio-legal {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: clamp(140px, 24vh, 220px);
+  padding-top: 18px;
+  border-top: 1px solid color-mix(in srgb, $color-primary 24%, transparent);
+  color: color-mix(in srgb, $color-text 72%, transparent);
+  font-size: 12px;
+
+  a { text-decoration: underline; text-underline-offset: 3px; }
+  a:hover { color: $color-primary; }
+}
+
 @media (max-width: $mobile-breakpoint) {
-  .bio-page { min-height: 100vh; padding: 44px 20px 64px; }
+  .bio-page { min-height: 120vh; padding: 44px 20px 64px; }
   .bio-avatar { max-width: 100%; }
 }
